@@ -12,11 +12,6 @@ app.post("/tweets", (req, res) => {
     const { username, tweet } = req.body
     const {auth} = req.headers
 
-    if (!auth) {
-        res.status(400).send("UNAUTHORIZED");
-        return;
-    }
-
     const newTweet = { id: tweets.length + 1, username, tweet }
 
     tweets.push(newTweet)

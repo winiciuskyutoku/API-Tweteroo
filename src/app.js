@@ -10,7 +10,7 @@ const users = []
 
 app.post("/tweets", (req, res) => {
     const { username, tweet } = req.body
-    const auth = req.headers
+    const {auth} = req.headers
 
     if (!auth) {
         res.status(400).send("UNAUTHORIZED");

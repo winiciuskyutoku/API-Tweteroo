@@ -37,10 +37,10 @@ app.get("/tweets", (req, res) => {
         t.avatar = avatar
     });
 
-    if(tweets.lenght < 10){
+    if(tweets.lenght <= 10){
         res.send([...tweets])
     } else {
-        res.send(tweets.slice(-10))
+        res.send([...tweets].slice(-10))
     }
 })
 

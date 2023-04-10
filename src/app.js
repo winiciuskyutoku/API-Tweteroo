@@ -10,6 +10,12 @@ const users = []
 
 app.post("/tweets", (req, res) => {
     const { username, tweet } = req.body
+    const auth = req.headers
+
+    if (!auth) {
+        res.status(400).send("UNAUTHORIZED");
+        return;
+    }
 
     const newTweet = { id: tweets.length + 1, username, tweet }
 
@@ -31,13 +37,13 @@ app.post("/sign-up", (req, res) => {
 })
 
 app.get("/tweets", (req, res) => {
-   
+
     tweets.forEach((t) => {
         const { avatar } = users.find((data) => data.username === t.username);
         t.avatar = avatar
     });
 
-    if(tweets.lenght <= 10){
+    if (tweets.lenght <= 10) {
         res.send([...tweets])
     } else {
         res.send([...tweets].slice(-10))
